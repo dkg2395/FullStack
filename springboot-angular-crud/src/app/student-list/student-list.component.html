@@ -1,0 +1,32 @@
+<div class="container-fluid">
+
+    <input [(ngModel)]="searchText" type="search" class="form-control" placeholder="Search"
+        style="margin: 10px auto; width: 50%;">
+
+    <table class="table table-light">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let s of students | studentFilterPipe:searchText">
+                <td>{{s.id}}</td>
+                <td>{{s.name}}</td>
+                <td>{{s.age}}</td>
+                <td>{{s.phone}}</td>
+                <td>{{s.address}}</td>
+                <td>
+                    <button class="btn btn-warning" style="margin-right: 5px;"
+                        [routerLink]="['/edit-student',s.id]">Edit</button>
+                    <button class="btn btn-danger" (click)="deleteStudent(s.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
